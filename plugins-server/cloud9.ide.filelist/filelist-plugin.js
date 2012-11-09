@@ -77,7 +77,8 @@ module.exports = function setup(options, imports, register) {
                             res.writeHead(200, { "content-type": "text/plain" });
                             headersSent = true;
                         }
-                        res.write(msg);
+                        //res.write(msg); pc9 ->
+                        res.write(msg.replace(/\.\//g, './c9/'));
                     },
                     // process exit
                     function(code, stderr) {

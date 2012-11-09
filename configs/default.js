@@ -16,11 +16,11 @@ for (var i = 0; i < clientDirs.length; i++) {
 }
 
 var projectDir = (argv.w && path.resolve(process.cwd(), argv.w)) || process.cwd();
-var fsUrl = "/workspace";
-var vfsUrl = "/vfs";
+var fsUrl = "/c9/workspace"; // pc9
+var vfsUrl = "/c9/vfs"; // pc9
 
-var port = argv.p || process.env.PORT || 3131;
-var host = argv.l || process.env.IP || "localhost";
+var port = argv.p || process.env.PORT || 3132; // pc9
+var host = argv.l || process.env.IP || "10.113.0.205"; // pc9
 
 var config = [
     {
@@ -33,7 +33,7 @@ var config = [
         plugins: clientExtensions
     }, {
         packagePath: "connect-architect/connect.static",
-        prefix: "/static"
+        prefix: "/static" // pc9
     },
     "./cloud9.alive",
     "./cloud9.debug",
@@ -47,7 +47,7 @@ var config = [
     "./../plugins-client/lib.requirejs",
     {
         packagePath: "smith.io/server-plugin",
-        messagePath: "/smith.io/server",
+        messagePath: "/smith.io/server", // pc9
         debug: true
     },
     // server plugins
@@ -63,8 +63,8 @@ var config = [
         debug: false,
         fsUrl: fsUrl,
         smithIo: {
-            port: port,
-            prefix: "/smith.io/server"
+            port: 2100, //pc9 public port
+            prefix: "/c9/smith.io/server" // pc9 url viewed from outside
         },
         hosted: false,
         bundledPlugins: [

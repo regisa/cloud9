@@ -17,7 +17,7 @@ module.exports = function setup(options, imports, register) {
     var permissions = imports["workspace-permissions"];
 
     var sandbox = imports.sandbox;
-    var baseUrl = options.baseUrl || "";
+    var baseUrl = options.baseUrl || ""; //pc9
     var staticPrefix = imports.static.getStaticPrefix();
     var workerPrefix = imports.static.getWorkerPrefix() || "/static";
 
@@ -50,12 +50,12 @@ module.exports = function setup(options, imports, register) {
         ide = new IdeServer({
             workspaceDir: projectDir,
             settingsPath: "",
-            davPrefix: baseUrl + "/workspace",
+            davPrefix: "/c9/workspace", //pc9
             projectName: options.projectName || "",
             smithIo: options.smithIo,
             baseUrl: baseUrl,
             debug: (options.debug === true) ? true : false,
-            workerUrl: workerPrefix,
+            workerUrl: '/c9/static', //pc9
             staticUrl: staticPrefix,
             workspaceId: workspaceId,
             runners: runnerTypes,

@@ -38,7 +38,7 @@ module.exports = function setup(options, imports, register) {
             SETTINGS_PATH = options.absoluteSettingsPath;        
         }
 
-        trimFilePrefix = options.trimFilePrefix;
+        trimFilePrefix = '/c9';//options.trimFilePrefix; //pc9
         imports.ide.register(name, SettingsPlugin, register);
     });
 };
@@ -96,7 +96,7 @@ util.inherits(SettingsPlugin, Plugin);
                         for (var l in locationsToSwap) {
                             var attribute = locationsToSwap[l] + attrSet;
                             
-                            settings = settings.replace(new RegExp(attribute + "/workspace", "g"), attribute + trimFilePrefix + "/workspace");
+                            settings = settings.replace(new RegExp(attribute + "/workspace", "g"), attribute + trimFilePrefix + "/workspace"); // pc9
                         }
                         
                         propertiesToSwap.forEach(function (el, idx, arr) {
@@ -105,7 +105,7 @@ util.inherits(SettingsPlugin, Plugin);
     
                             if (openTagPos > 0 && closeTagPos > 0) {
                                 var originalPath = settings.substring(openTagPos, closeTagPos);
-                                var newPath = originalPath.replace(new RegExp("/workspace", "g"), trimFilePrefix + "/workspace");
+                                var newPath = originalPath.replace(new RegExp("/workspace", "g"), trimFilePrefix + "/workspace"); //pc9
 
                                 settings = settings.replace(originalPath, newPath);
                             }

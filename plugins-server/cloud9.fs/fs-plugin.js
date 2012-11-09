@@ -12,6 +12,7 @@ var DavPermission = require("./dav/permission");
 module.exports = function setup(options, imports, register) {
 
     assert(options.urlPrefix);
+    var prefix = '/workspace';//options.urlPrefix; //pc9
 
     var permissions = imports["workspace-permissions"];
 
@@ -30,7 +31,7 @@ module.exports = function setup(options, imports, register) {
 
         var davOptions = {
             path: mountDir,
-            mount: options.urlPrefix,
+            mount: prefix,
             plugins: options.davPlugins,
             server: {},
             standalone: false
@@ -46,7 +47,7 @@ module.exports = function setup(options, imports, register) {
         davServer.plugins["permission"] = DavPermission;
 
         imports.connect.useAuth(function(req, res, next) {
-            if (req.url.indexOf(options.urlPrefix) !== 0)
+            if (req.url.indexOf(prefix) !== 0)
                 return next();
 
             if (!req.session || !(req.session.uid || req.session.anonid))
@@ -59,7 +60,6 @@ module.exports = function setup(options, imports, register) {
                     pause.resume();
                     return;
                 }
-
                 davServer.permissions = permissions.fs;
                 davServer.exec(req, res);
                 pause.resume();
